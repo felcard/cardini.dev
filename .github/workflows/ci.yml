@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Formatting
+        run: npm run format:check
+      - name: Build
+        run: npm run build
+      - name: Weight budget (100 KB)
+        run: npm run weight
+      - name: Colour contrast (WCAG AA)
+        run: node scripts/contrast.mjs
+      - name: Broken links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: true
+          args: >-
+            --no-progress
+            --root-dir ${{ github.workspace }}/dist
+            --exclude '^mailto:'
+            --exclude 'linkedin\.com'
+            --exclude 'websitecarbon\.com'
+            --exclude 'cardini\.dev'
+            'dist/**/*.html'
+      - name: Lighthouse
+        run: npx lhci autorun

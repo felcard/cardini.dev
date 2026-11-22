@@ -1,0 +1,59 @@
+---
+import type { CaseStudy } from '../content/site';
+
+interface Props {
+  study: CaseStudy;
+}
+const { study } = Astro.props;
+const rows = [
+  ['Problem', study.problem],
+  ['Decision', study.decision],
+  ['Result', study.result],
+] as const;
+---
+
+<article class="card">
+  <h3>{study.title}</h3>
+  <dl>
+    {rows.map(([term, text]) => (
+      <div>
+        <dt>{term}</dt>
+        <dd>{text}</dd>
+      </div>
+    ))}
+  </dl>
+</article>
+
+<style>
+  .card {
+    padding: var(--s-4);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  h3 {
+    font-size: var(--step-1);
+    letter-spacing: -0.01em;
+  }
+
+  dl {
+    margin-top: var(--s-3);
+  }
+
+  dl > div + div {
+    margin-top: var(--s-3);
+  }
+
+  dt {
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  div:last-child dt {
+    color: var(--accent);
+  }
+</style>

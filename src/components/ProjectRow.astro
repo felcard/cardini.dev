@@ -1,0 +1,77 @@
+---
+import type { Project } from '../content/site';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+const links = [
+  project.demo && { label: 'Demo', href: project.demo },
+  project.code && { label: 'Code', href: project.code },
+].filter((l): l is { label: string; href: string } => Boolean(l));
+---
+
+<article class="row">
+  <h3>
+    {project.name}
+    {project.tag && <span class="tag">{project.tag}</span>}
+  </h3>
+  <p>{project.description}</p>
+  <p class="stack small muted">{project.stack}</p>
+  {links.length > 0 && (
+    <ul class="links">
+      {links.map((l) => (
+        <li>
+          <a href={l.href}>
+            {l.label}
+            <span class="visually-hidden"> for {project.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</article>
+
+<style>
+  .row {
+    padding-block: var(--s-4);
+    border-top: 1px solid var(--border);
+  }
+
+  .row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-2);
+    font-size: var(--step-1);
+  }
+
+  .tag {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  p {
+    margin-top: var(--s-2);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--s-3);
+    margin-top: var(--s-1);
+    padding: 0;
+    list-style: none;
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+// Two TRACE screens, overlapped like a pair of windows: data entry behind, the
+// results dashboard in front. Both are screenshots isla has published on
+// traceyour.events, re-hosted compressed (scripts/images.mjs) and credited.
+const shots = [
+  {
+    name: 'trace-data-entry',
+    width: 1200,
+    height: 735,
+    alt: 'TRACE’s Energy page, where an event organiser enters mains electricity, gas and temporary power use for an event.',
+  },
+  {
+    name: 'trace-dashboard',
+    width: 1200,
+    height: 683,
+    alt: 'TRACE’s results dashboard: totals for events, attendees, carbon and waste, emissions split into Scope 1, 2 and 3, and a breakdown by category.',
+  },
+];
+---
+
+<figure class="screens">
+  <div class="stack">
+    {shots.map((s, i) => (
+      <picture class:list={['shot', `shot--${i + 1}`]}>
+        <source srcset={`/images/${s.name}.avif`} type="image/avif" />
+        <img
+          src={`/images/${s.name}.webp`}
+          width={s.width}
+          height={s.height}
+          alt={s.alt}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+    ))}
+  </div>
+  <figcaption class="small muted">
+    Measure, then report: entering an event’s energy use, and the results dashboard. Images: isla,
+    from <a href="https://traceyour.events/">traceyour.events</a>.
+  </figcaption>
+</figure>
+
+<style>
+  .screens {
+    margin: var(--s-4) 0 var(--s-5);
+  }
+
+  /* Both windows share one grid cell; offsets make them overlap. */
+  .stack {
+    display: grid;
+  }
+
+  .shot {
+    grid-area: 1 / 1;
+    display: block;
+  }
+
+  .shot--1 {
+    margin-right: 22%;
+  }
+
+  .shot--2 {
+    margin-left: 22%;
+    margin-top: 26%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 10px 28px rgb(40 30 10 / 0.12);
+  }
+
+  .shot--2 img {
+    box-shadow: 0 14px 36px rgb(40 30 10 / 0.18);
+  }
+
+  :global([data-theme='dark']) img {
+    border-color: #3a362f;
+    box-shadow: 0 14px 36px rgb(0 0 0 / 0.5);
+  }
+
+  figcaption {
+    margin-top: var(--s-3);
+  }
+</style>

@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import Cafe from '../components/Cafe.astro';
+import TraceScreens from '../components/TraceScreens.astro';
+import { site } from '../content/site';
+
+const { work, magdry, projects, ai, about } = site;
+---
+
+<Base nav>
+  <Cafe slot="backdrop" />
+  <div class="wrap">
+    <Hero />
+
+    <section class="section" aria-labelledby="work">
+      <SectionHeading id="work" eyebrow={`Work · ${work.dates}`}>
+        {work.company} / {work.product}
+      </SectionHeading>
+      <p>{work.intro}</p>
+      <TraceScreens />
+
+      <div class="cards">
+        {work.caseStudies.map((study) => (
+          <CaseStudyCard study={study} />
+        ))}
+      </div>
+
+      <h3 class="sub">Also at {work.company}</h3>
+      <ul class="list">
+        {work.alsoAt.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="magdry">
+      <SectionHeading id="magdry" eyebrow="Side business">
+        {magdry.title}
+      </SectionHeading>
+      <p>{magdry.body}</p>
+      <p class="more">
+        <a class="button" href={magdry.link.href}>
+          {magdry.link.label}
+        </a>
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="projects">
+      <SectionHeading id="projects" eyebrow="Projects">
+        Things I've built
+      </SectionHeading>
+      <div>
+        {projects.map((project) => (
+          <ProjectRow project={project} />
+        ))}
+      </div>
+    </section>
+
+    <section class="section stack" aria-labelledby="ai">
+      <SectionHeading id="ai" eyebrow="Process">
+        How I work with AI
+      </SectionHeading>
+      {ai.map((p) => (
+        <p>{p}</p>
+      ))}
+    </section>
+
+    <section class="section stack" aria-labelledby="about">
+      <SectionHeading id="about" eyebrow="About">
+        Always building for the web
+      </SectionHeading>
+      {about.map((p) => (
+        <p>{p}</p>
+      ))}
+    </section>
+
+    <section class="section" aria-labelledby="contact">
+      <SectionHeading id="contact" eyebrow="Contact">
+        Get in touch
+      </SectionHeading>
+      <p class="intro">
+        Hiring, or want to talk about a project? Send me a message. My CV is available on request.
+      </p>
+      <ContactForm />
+    </section>
+  </div>
+
+  <Footer slot="footer" />
+</Base>
+
+<style>
+  .intro {
+    margin-bottom: var(--s-4);
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .sub {
+    margin-top: var(--s-5);
+    font-size: var(--step-1);
+  }
+
+  .list {
+    margin-top: var(--s-3);
+    padding-left: 1.2em;
+  }
+
+  .list li + li {
+    margin-top: var(--s-2);
+  }
+
+  .list li::marker {
+    color: var(--accent);
+  }
+
+  .more {
+    margin-top: var(--s-4);
+  }
+</style>

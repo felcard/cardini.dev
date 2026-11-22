@@ -1,0 +1,277 @@
+/* ---------------------------------------------------------------
+   Design tokens: one typeface, one accent, one spacing scale.
+   Contrast (WCAG AA) checked by scripts/contrast.mjs.
+---------------------------------------------------------------- */
+:root {
+  color-scheme: light dark;
+
+  /* Colour: warm off-white paper, warm near-black ink, one green. */
+  --bg: #fbf8f3;
+  --surface: #ffffff;
+  --text: #1c1a17;
+  --muted: #5c564e;
+  --border: #e4ddd2;
+  --accent: #1f7a4d;
+  --pink: #b3157f; /* second neon colour: used sparingly */
+  --accent-ink: #ffffff; /* text on an accent fill */
+  --focus: #1f7a4d;
+
+  /* Type: system stack, zero font bytes. */
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(2.5rem, 7vw + 1rem, 4rem);
+
+  /* Spacing: 4px base. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 40px;
+  --s-6: 64px;
+
+  --measure: 680px;
+  --radius: 10px;
+}
+
+/* Theme: a tiny script in <head> sets data-theme on <html> before first paint,
+   from the visitor's saved choice or else their system setting. */
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #141311;
+  --surface: #1c1b18;
+  --text: #ece8e1;
+  --muted: #aaa298;
+  --border: #34312c;
+  --accent: #5cc48e;
+  --pink: #ff6fe0;
+  --accent-ink: #0d1f15;
+  --focus: #5cc48e;
+}
+
+/* No-JS fallback: follow the system setting (colours only). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #141311;
+    --surface: #1c1b18;
+    --text: #ece8e1;
+    --muted: #aaa298;
+    --border: #34312c;
+    --accent: #5cc48e;
+    --pink: #ff6fe0;
+    --accent-ink: #0d1f15;
+    --focus: #5cc48e;
+  }
+}
+
+/* Neon name and role: Monoton by Vernon Adams (OFL-1.1), subset to just the
+   letters they use (~2.5 KB). Monoton is a Reserved Font Name, so the subset
+   goes by a different family name, as the licence requires.
+   Regenerate with scripts/font.mjs. */
+@font-face {
+  font-family: 'Cardini Neon';
+  src: url('/fonts/neon.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------
+   Base
+---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--s-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--bg);
+}
+
+/* ---------------------------------------------------------------
+   Layout
+---------------------------------------------------------------- */
+.wrap {
+  max-width: calc(var(--measure) + 2 * var(--s-3));
+  margin-inline: auto;
+  padding-inline: var(--s-3);
+}
+
+@media (min-width: 600px) {
+  .wrap {
+    max-width: calc(var(--measure) + 2 * var(--s-4));
+    padding-inline: var(--s-4);
+  }
+}
+
+.section {
+  padding-block: var(--s-6) 0;
+}
+
+.stack > * + * {
+  margin-top: var(--s-3);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: var(--step--1);
+}
+
+/* Skip link */
+.skip {
+  position: absolute;
+  left: var(--s-3);
+  top: -100px;
+  z-index: 10;
+  padding: var(--s-2) var(--s-3);
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.skip:focus {
+  top: var(--s-2);
+}
+
+/* Section heading: small label + accent rule */
+.section-heading {
+  font-size: var(--step-2);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-4);
+}
+
+.section-heading .eyebrow {
+  display: block;
+  margin-bottom: var(--s-2);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Buttons (links styled as buttons) */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: 0;
+  list-style: none;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--s-2) var(--s-3);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  font-size: var(--step--1);
+  text-decoration: none;
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color 120ms ease,
+    background-color 120ms ease;
+}
+
+.button:hover {
+  border-color: var(--accent);
+}
+
+.button--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.button--primary:hover {
+  background: color-mix(in srgb, var(--accent) 88%, var(--text));
+}
+
+.button[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}

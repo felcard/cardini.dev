@@ -1,0 +1,38 @@
+{
+  "name": "cardini-dev",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Felipe Cardini's portfolio: one static page, zero JavaScript, under 100 KB.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "weight": "node scripts/weight.mjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "astro": "^6.4.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@eslint/js": "^10.0.1",
+    "@fontsource/monoton": "^5.3.0",
+    "@lhci/cli": "^0.15.1",
+    "@tgwf/co2": "^0.19.0",
+    "esbuild": "^0.27.7",
+    "eslint": "^10.15.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^1.1.2",
+    "subset-font": "^2.9.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.73.0"
+  }
+}

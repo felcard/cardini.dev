@@ -1,0 +1,64 @@
+---
+import { site } from '../content/site';
+import { token } from '../../integrations/tokens.mjs';
+// Replaced with real figures after the build by integrations/carbon.mjs.
+const KB_TOKEN = token('TOTAL');
+const CO2_TOKEN = token('CO2');
+
+const links = [
+  { label: site.email, href: `mailto:${site.email}` },
+  { label: 'GitHub', href: site.links.github },
+  site.links.linkedin && { label: 'LinkedIn', href: site.links.linkedin },
+  site.links.cv && { label: 'CV', href: site.links.cv },
+].filter((l): l is { label: string; href: string } => Boolean(l));
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <ul>
+      {links.map((l) => (
+        <li>
+          <a href={l.href}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+    <p class="small muted">
+      {import.meta.env.PROD
+        ? `This page is ${KB_TOKEN} KB to download and emits about ${CO2_TOKEN} g of CO₂ per visit, `
+        : 'Page weight and CO₂ per visit are '}
+      estimated on every build with
+      <a href="https://developers.thegreenwebfoundation.org/co2js/overview/">CO2.js</a>.
+    </p>
+    <p class="small muted">
+      © {new Date().getFullYear()} {site.name}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--s-6);
+    padding-block: var(--s-5);
+    border-top: 1px solid var(--border);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--s-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  ul a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  p {
+    margin-top: var(--s-2);
+  }
+</style>

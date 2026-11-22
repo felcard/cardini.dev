@@ -1,0 +1,186 @@
+---
+import { token } from '../../integrations/tokens.mjs';
+import { site } from '../content/site';
+
+type Key = Parameters<typeof token>[0];
+// Real figures are written in after the build (integrations/carbon.mjs); dev shows dashes.
+const v = (k: Key) => (import.meta.env.PROD ? token(k) : '–');
+
+const built = new Date().toLocaleDateString('en-GB', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
+
+const items: [qty: number | string, label: string, key: Key][] = [
+  [1, 'HTML', 'HTML'],
+  [1, 'Styles', 'CSS'],
+  // Inline scripts: theme switcher, café scene director, plus the contact form's when it's on.
+  [site.contact.web3formsKey ? 3 : 2, 'JavaScript', 'JS'],
+  [1, 'Font (name only)', 'FONT'],
+  [1, 'Icon', 'ICON'],
+  [v('IMGN'), 'Images', 'IMG'],
+];
+---
+
+<figure class="receipt" aria-labelledby="receipt-title">
+  <header>
+    <p class="shop" id="receipt-title">
+      cardini.dev
+    </p>
+    <p>Served by Felipe · London</p>
+    <p>{built}</p>
+  </header>
+
+  <table>
+    <caption class="visually-hidden">What this page cost to load, itemised</caption>
+    <tbody>
+      {items.map(([qty, label, key]) => (
+        <tr>
+          <th scope="row">
+            {qty} × {label}
+          </th>
+          <td>{qty === 0 ? '0.0' : v(key)} KB</td>
+        </tr>
+      ))}
+    </tbody>
+    <tbody class="totals">
+      <tr>
+        <th scope="row">Subtotal</th>
+        <td>{v('SUB')} KB</td>
+      </tr>
+      <tr>
+        <th scope="row">Compression discount</th>
+        <td>−{v('SAVED')} KB</td>
+      </tr>
+      <tr class="total">
+        <th scope="row">Total sent</th>
+        <td>{v('TOTAL')} KB</td>
+      </tr>
+      <tr class="co2">
+        <th scope="row">CO₂ this visit</th>
+        <td>{v('CO2')} g</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <figcaption>
+    Measured on every build.
+    <br />
+    Thanks for visiting!
+  </figcaption>
+</figure>
+
+<style>
+  .receipt {
+    --paper: #fffdf8;
+    --ink: #2a2723;
+    --faded: #5f5a52;
+    width: min(100%, 300px);
+    margin: var(--s-5) 0 0;
+    padding: var(--s-4) var(--s-4) calc(var(--s-4) + 10px);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    rotate: -1.5deg;
+    filter: drop-shadow(0 6px 14px rgb(40 30 10 / 0.14));
+    /* Torn bottom edge: a row of small triangles cut out of the paper. */
+    --tear: 10px;
+    mask:
+      linear-gradient(#000 0 0) top / 100% calc(100% - var(--tear)) no-repeat,
+      conic-gradient(from 135deg at 50% 0, #000 90deg, #0000 0) bottom / calc(var(--tear) * 2)
+        var(--tear) repeat-x;
+    transition: rotate 200ms ease;
+  }
+
+  .receipt:hover {
+    rotate: 0deg;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .receipt {
+      transition: none;
+    }
+  }
+
+  :global([data-theme='dark']) .receipt {
+    --paper: #ece6da;
+    filter: drop-shadow(0 8px 20px rgb(0 0 0 / 0.5));
+  }
+
+  /* Wide screens: the receipt hangs in the margin beside the hero. */
+  @media (min-width: 1400px) {
+    .receipt {
+      position: absolute;
+      top: calc(var(--s-6) * 1.5 + var(--s-3));
+      left: calc(100% + var(--s-5));
+      width: 260px;
+      margin: 0;
+      rotate: 2.5deg;
+    }
+  }
+
+  header {
+    text-align: center;
+    padding-bottom: var(--s-3);
+    border-bottom: 1px dashed var(--faded);
+  }
+
+  .shop {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    font-weight: 400;
+    text-align: left;
+  }
+
+  td {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th,
+  td {
+    padding-block: 2px;
+  }
+
+  tbody:first-of-type tr:first-child > * {
+    padding-top: var(--s-3);
+  }
+
+  .totals tr:first-child > * {
+    padding-top: var(--s-2);
+    border-top: 1px dashed var(--faded);
+  }
+
+  .total > * {
+    font-weight: 700;
+    font-size: 0.9375rem;
+  }
+
+  .co2 > * {
+    padding-top: var(--s-2);
+    font-weight: 700;
+    color: #1a6b43;
+  }
+
+  figcaption {
+    margin-top: var(--s-3);
+    padding-top: var(--s-3);
+    border-top: 1px dashed var(--faded);
+    text-align: center;
+    color: var(--faded);
+  }
+</style>

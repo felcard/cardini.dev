@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../content/site';
+---
+
+<Base title={`Page not found | ${site.name}`} noindex>
+  <div class="wrap page stack">
+    <h1>Page not found</h1>
+    <p>This page doesn't exist (any more). Everything now lives on one page.</p>
+    <p>
+      <a href="/">Go to cardini.dev</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-block: var(--s-6);
+  }
+  h1 {
+    font-size: var(--step-2);
+  }
+</style>
