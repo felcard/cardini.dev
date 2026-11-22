@@ -17,7 +17,7 @@ export interface CaseStudy {
 
 export interface Project {
   name: string;
-  /** Short qualifier shown next to the name, e.g. "client project". */
+  /** Optional short qualifier shown next to the name, e.g. "in progress". */
   tag?: string;
   description: string;
   stack: string;
@@ -133,7 +133,6 @@ export const site: Site = {
   projects: [
     {
       name: 'Braincloud',
-      tag: 'client project',
       description:
         'Live word-cloud app for presentations: the audience submits words anonymously and the most popular grow in real time, with an admin area for session logins.',
       stack: 'WebSockets · MongoDB Atlas · React',
