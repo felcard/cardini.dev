@@ -1,7 +1,7 @@
-// Weight of the built home page: HTML (with inlined CSS/JS), favicon, neon font and the
-// AVIF screenshots (lazy-loaded, but a full visit fetches them).
+// Weight of the built home page: HTML (with inlined CSS/JS), favicon, neon font, and any
+// AVIF images in dist/images (lazy-loaded, but a full visit fetches them).
 // Fails if over budget. Run after `npm run build`.
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 
 const BUDGET_KB = 100;
@@ -9,9 +9,11 @@ const files = [
   'dist/index.html',
   'dist/favicon.svg',
   'dist/fonts/neon.woff2',
-  ...readdirSync('dist/images')
-    .filter((f) => f.endsWith('.avif'))
-    .map((f) => `dist/images/${f}`),
+  ...(existsSync('dist/images')
+    ? readdirSync('dist/images')
+        .filter((f) => f.endsWith('.avif'))
+        .map((f) => `dist/images/${f}`)
+    : []),
 ];
 
 let raw = 0;

@@ -7,7 +7,6 @@ import ProjectRow from '../components/ProjectRow.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import Cafe from '../components/Cafe.astro';
-import TraceScreens from '../components/TraceScreens.astro';
 import { site } from '../content/site';
 
 const { work, magdry, projects, ai, about } = site;
@@ -22,8 +21,15 @@ const { work, magdry, projects, ai, about } = site;
       <SectionHeading id="work" eyebrow={`Work · ${work.dates}`}>
         {work.company} / {work.product}
       </SectionHeading>
-      <p>{work.intro}</p>
-      <TraceScreens />
+      <p class="intro">{work.intro}</p>
+      <p class="refs small">
+        {work.links.map((l, i) => (
+          <>
+            {i > 0 && ' · '}
+            <a href={l.href}>{l.label}</a>
+          </>
+        ))}
+      </p>
 
       <div class="cards">
         {work.caseStudies.map((study) => (
@@ -97,6 +103,16 @@ const { work, magdry, projects, ai, about } = site;
 <style>
   .intro {
     margin-bottom: var(--s-4);
+  }
+
+  .refs {
+    margin: calc(var(--s-4) * -1 + var(--s-2)) 0 var(--s-4);
+  }
+
+  /* Comfortable tap targets (24px+) for the small links. */
+  .refs a {
+    display: inline-block;
+    padding-block: var(--s-1);
   }
 
   .cards {

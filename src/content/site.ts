@@ -44,6 +44,8 @@ export interface Site {
     product: string;
     dates: string;
     intro: string;
+    /** Public pages about the product and the company. */
+    links: Link[];
     caseStudies: CaseStudy[];
     alsoAt: string[];
   };
@@ -81,8 +83,12 @@ export const site: Site = {
     product: 'TRACE',
     dates: 'Oct 2023 – present',
     intro:
-      // Public facts only (traceyour.events, weareisla.co.uk). Usage numbers need isla's OK first.
-      "TRACE lets event organisers, from IMEX and Cannes Lions to the NHS, measure, reduce and report their Scope 1–3 emissions, using carbon data aligned with the GHG Protocol. I'm part of engineering team that builds and runs it, working closely with our senior lead.",
+      // Public facts only; no client names, screenshots or usage numbers.
+      "TRACE lets event organisers measure, reduce and report their events' Scope 1–3 emissions, using carbon data aligned with the GHG Protocol. I'm part of the engineering team that builds and runs it, working closely with our senior lead.",
+    links: [
+      { label: 'About TRACE', href: 'https://traceyour.events/' },
+      { label: 'About isla', href: 'https://weareisla.co.uk/' },
+    ],
     caseStudies: [
       {
         title: 'Cut infrastructure costs by retiring Redis',
