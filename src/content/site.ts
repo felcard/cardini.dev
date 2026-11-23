@@ -145,7 +145,7 @@ export const site: Site = {
         'Private chat rooms in seconds: no sign-up, nothing stored, conversations disappear when the browser closes. While they chat, people can play a custom tic-tac-toe I built, with every move synced live between players over WebSockets.',
       stack: 'WebSockets · React',
       demo: 'https://powerchat.netlify.app/',
-      code: undefined, // TODO: add once the repo is tidied and public
+      code: 'https://github.com/felcard/charla',
     },
   ],
 
