@@ -134,10 +134,10 @@ export const site: Site = {
     {
       name: 'Braincloud',
       description:
-        'Live word-cloud app for presentations: the audience submits words anonymously and the most popular grow in real time, with an admin area for session logins.',
-      stack: 'WebSockets · MongoDB Atlas · React',
+        'Live word-cloud app for presentations: the audience submits words anonymously and the most popular grow in real time. Host can control the session and manage the word cloud in real time.',
+      stack: 'WebSockets · React',
       demo: 'https://braincloud.netlify.app/',
-      code: undefined, // TODO: add once the repo is tidied and public
+      code: 'https://github.com/felcard/braincloud',
     },
     {
       name: 'Charla',
