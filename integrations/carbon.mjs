@@ -49,7 +49,7 @@ export default function carbon() {
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
         const root = fileURLToPath(dir);
-        const icon = await readFile(join(root, 'favicon.svg'));
+        const icon = await readFile(join(root, 'favicon.png'));
         const font = await readFile(join(root, 'fonts/neon.woff2'));
 
         for (const file of await htmlFiles(root)) {

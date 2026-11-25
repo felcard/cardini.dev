@@ -64,11 +64,11 @@ export interface Site {
 }
 
 export const site: Site = {
-  name: 'Felipe Cardini',
-  role: 'Full-stack engineer.',
+  name: 'Fel Cardini',
+  role: 'Software engineer.',
   url: 'https://cardini.dev',
   description:
-    'Felipe Cardini, full-stack engineer (Node, React, TypeScript, MongoDB). Three years on the team building TRACE, the carbon measurement platform behind thousands of events. London.',
+    'Fel Cardini, software engineer (Node, React, TypeScript, MongoDB). Three years on the team building TRACE, the carbon measurement platform behind thousands of events. London.',
   email: 'hi@cardini.dev',
   links: {
     github: 'https://github.com/felcard',

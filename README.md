@@ -1,6 +1,6 @@
 # cardini.dev
 
-Felipe Cardini's portfolio. One static page, no client framework, about **18 KB** on first load.
+Fel Cardini's portfolio. One static page, no client framework, about **18 KB** on first load.
 
 Built with Astro + TypeScript (strict). All copy lives in [`src/content/site.ts`](src/content/site.ts). To change it, edit that file and push; the site redeploys automatically.
 

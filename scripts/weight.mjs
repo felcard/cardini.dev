@@ -7,7 +7,7 @@ import { gzipSync } from 'node:zlib';
 const BUDGET_KB = 100;
 const files = [
   'dist/index.html',
-  'dist/favicon.svg',
+  'dist/favicon.png',
   'dist/fonts/neon.woff2',
   ...(existsSync('dist/images')
     ? readdirSync('dist/images')

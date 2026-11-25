@@ -12,7 +12,7 @@ interface Props {
 }
 
 const {
-  title = `${site.name}: full-stack engineer`,
+  title = `${site.name}: software engineer`,
   description = site.description,
   noindex = false,
   nav = false,
@@ -39,7 +39,8 @@ const navItems = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {nav && <link rel="preload" href="/fonts/neon.woff2" as="font" type="font/woff2" crossorigin />}
     <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)" />

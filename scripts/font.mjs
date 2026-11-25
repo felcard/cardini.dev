@@ -3,7 +3,7 @@
 import { readFile, writeFile, copyFile } from 'node:fs/promises';
 import subsetFont from 'subset-font';
 
-const TEXT = 'Felipe Cardini' + 'Full-stack engineer.';
+const TEXT = 'Fel Cardini' + 'Software engineer.';
 const pkg = 'node_modules/@fontsource/monoton';
 const src = await readFile(`${pkg}/files/monoton-latin-400-normal.woff2`);
 const out = await subsetFont(src, TEXT, { targetFormat: 'woff2' });
