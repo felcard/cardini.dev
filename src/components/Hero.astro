@@ -269,6 +269,8 @@ const [first, ...rest] = site.name.split(' ');
     font-size: clamp(1.25rem, 5vw + 0.25rem, 2.5rem);
     font-weight: 400;
     letter-spacing: 0.01em;
+    /* Monoton's own space is very narrow; open the gap between the words. */
+    word-spacing: 0.35em;
     color: var(--tube);
     text-shadow: var(--shadow);
   }

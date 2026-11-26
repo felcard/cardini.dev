@@ -17,40 +17,47 @@ import Worker from './Worker.astro';
         <svg viewBox="0 0 100 220">
           <g class="body">
             <g class="leg leg--back">
-              <rect x="45" y="126" width="10" height="44" rx="5"></rect>
+              <rect class="w-trousers" x="45" y="126" width="10" height="44" rx="5"></rect>
               <g class="shin">
-                <rect x="46" y="164" width="8" height="42" rx="4"></rect>
-                <path d="M45 202 h10 q10 2 11 7 h-21 z"></path>
+                <rect class="w-trousers" x="46" y="164" width="8" height="42" rx="4"></rect>
+                <path class="w-shoe" d="M45 202 h10 q10 2 11 7 h-21 z"></path>
               </g>
             </g>
             <g class="leg leg--front">
-              <rect x="45" y="126" width="10" height="44" rx="5"></rect>
+              <rect class="w-trousers" x="45" y="126" width="10" height="44" rx="5"></rect>
               <g class="shin">
-                <rect x="46" y="164" width="8" height="42" rx="4"></rect>
-                <path d="M45 202 h10 q10 2 11 7 h-21 z"></path>
+                <rect class="w-trousers" x="46" y="164" width="8" height="42" rx="4"></rect>
+                <path class="w-shoe" d="M45 202 h10 q10 2 11 7 h-21 z"></path>
               </g>
             </g>
             <!-- long café apron, from the waist -->
-            <path class="apron" d="M38 106 L62 106 L66 172 Q50 175 34 172 Z"></path>
+            <path class="apron w-apron" d="M38 106 L62 106 L66 172 Q50 175 34 172 Z"></path>
             <!-- everything above the waist bends together when he sets the cup down -->
             <g class="torso">
               <g class="arm arm--back">
-                <path d="M38 50 h9 l1 56 q-5 9 -10 0 z"></path>
+                <path class="w-shirt-shade" d="M38 50 h9 l1 56 q-5 9 -10 0 z"></path>
               </g>
-              <path d="M38 48 Q50 43 62 48 L61 112 L39 112 Z"></path>
-              <rect x="46" y="37" width="8" height="12"></rect>
-              <ellipse cx="50" cy="30" rx="8" ry="9.5"></ellipse>
-              <path d="M57 26 L61.5 32 L57 33.5 Z"></path>
-              <path d="M42 31 Q41 19 50 19 Q58 19 58.5 25 Q52 23 47 26 Q44 29 43.5 35 Z"></path>
+              <path class="w-shirt" d="M38 48 Q50 43 62 48 L61 112 L39 112 Z"></path>
+              <rect class="w-skin" x="46" y="37" width="8" height="12"></rect>
+              <ellipse class="w-skin" cx="50" cy="30" rx="8" ry="9.5"></ellipse>
+              <path class="w-skin" d="M57 26 L61.5 32 L57 33.5 Z"></path>
+              <path
+                class="w-hair"
+                d="M42 31 Q41 19 50 19 Q58 19 58.5 25 Q52 23 47 26 Q44 29 43.5 35 Z"
+              ></path>
               <!-- carrying arm: a cup and saucer held out at waist height -->
               <g class="carry">
-                <path d="M53 48 L61 48 L64 84 L56 86 Z"></path>
+                <path class="w-shirt" d="M53 48 L61 48 L64 84 L56 86 Z"></path>
                 <g class="reach">
-                  <path d="M56 82 L62 88 L100 85 L99 79 Z"></path>
+                  <path class="w-skin" d="M56 82 L62 88 L100 85 L99 79 Z"></path>
+                  <path class="w-shirt" d="M56 82 L62 88 L68 87.4 L66 80.6 Z"></path>
                   <g class="carried">
-                    <rect x="92" y="82" width="16" height="2" rx="1"></rect>
-                    <path d="M96 74 L104 74 L103 81 Q100 82.5 97 81 Z"></path>
-                    <path d="M104 75.5 Q107.5 76 106.5 79 Q105.5 80.5 103.5 79.5 L103.6 78.5 Q105.2 79 105.4 78 Q105.8 76.6 104 76.6 Z"></path>
+                    <rect class="china" x="92" y="82" width="16" height="2" rx="1"></rect>
+                    <path class="china" d="M96 74 L104 74 L103 81 Q100 82.5 97 81 Z"></path>
+                    <path
+                      class="china"
+                      d="M104 75.5 Q107.5 76 106.5 79 Q105.5 80.5 103.5 79.5 L103.6 78.5 Q105.2 79 105.4 78 Q105.8 76.6 104 76.6 Z"
+                    ></path>
                   </g>
                 </g>
               </g>
@@ -71,22 +78,50 @@ import Worker from './Worker.astro';
         <path class="stem" d="M-6 178 C-2 150 6 120 18 96"></path>
         <path class="stem" d="M-8 178 C-12 165 -14 152 -12 140"></path>
         <path class="stem" d="M-5 178 C0 160 4 142 8 128"></path>
-        <ellipse cx="-6" cy="108" rx="14" ry="8.5" transform="rotate(-32 -6 108)"></ellipse>
-        <ellipse cx="19" cy="93" rx="13" ry="7.5" transform="rotate(24 19 93)"></ellipse>
-        <ellipse cx="-13" cy="137" rx="11" ry="7" transform="rotate(-58 -13 137)"></ellipse>
-        <ellipse cx="9" cy="124" rx="11" ry="6.5" transform="rotate(38 9 124)"></ellipse>
+        <ellipse
+          class="leaf"
+          cx="-6"
+          cy="108"
+          rx="14"
+          ry="8.5"
+          transform="rotate(-32 -6 108)"
+        ></ellipse>
+        <ellipse
+          class="leaf"
+          cx="19"
+          cy="93"
+          rx="13"
+          ry="7.5"
+          transform="rotate(24 19 93)"
+        ></ellipse>
+        <ellipse
+          class="leaf"
+          cx="-13"
+          cy="137"
+          rx="11"
+          ry="7"
+          transform="rotate(-58 -13 137)"
+        ></ellipse>
+        <ellipse
+          class="leaf"
+          cx="9"
+          cy="124"
+          rx="11"
+          ry="6.5"
+          transform="rotate(38 9 124)"
+        ></ellipse>
       </g>
-      <path d="M-17 176 L3 176 L0 208 L-14 208 Z"></path>
+      <path class="pot" d="M-17 176 L3 176 L0 208 L-14 208 Z"></path>
       <!-- low coffee table, short splayed legs -->
-      <rect x="96" y="154" width="108" height="4" rx="1.5"></rect>
-      <path d="M104 158 L108 158 L111 208 L108 208 Z"></path>
-      <path d="M196 158 L192 158 L189 208 L192 208 Z"></path>
+      <rect class="tabletop" x="96" y="154" width="108" height="4" rx="1.5"></rect>
+      <path class="table-leg" d="M104 158 L108 158 L111 208 L108 208 Z"></path>
+      <path class="table-leg" d="M196 158 L192 158 L189 208 L192 208 Z"></path>
       <!-- her laptop: keyboard towards her, lid tilted away -->
-      <rect x="100" y="152" width="27" height="2" rx="0.5"></rect>
-      <path d="M125 154 L127.2 154 L132.2 129 L130 128.6 Z"></path>
+      <rect class="alu" x="100" y="152" width="27" height="2" rx="0.5"></rect>
+      <path class="alu-dark" d="M125 154 L127.2 154 L132.2 129 L130 128.6 Z"></path>
       <!-- his laptop, mirrored -->
-      <rect x="173" y="152" width="27" height="2" rx="0.5"></rect>
-      <path d="M175 154 L172.8 154 L167.8 129 L170 128.6 Z"></path>
+      <rect class="alu" x="173" y="152" width="27" height="2" rx="0.5"></rect>
+      <path class="alu-dark" d="M175 154 L172.8 154 L167.8 129 L170 128.6 Z"></path>
       <!-- coffees, shown once the waiter has brought them -->
       <g class="cup cup--her">
         <rect x="132" y="152.5" width="16" height="1.5" rx="0.75"></rect>
@@ -97,8 +132,8 @@ import Worker from './Worker.astro';
         <path d="M156 145 L164 145 L163 152 Q160 153.5 157 152 Z"></path>
       </g>
       <!-- candle in a low glass jar -->
-      <rect x="143" y="139.5" width="14" height="14.5" rx="1.6"></rect>
-      <rect x="142.4" y="139" width="15.2" height="1.4" rx="0.7"></rect>
+      <rect class="jar" x="143" y="139.5" width="14" height="14.5" rx="1.6"></rect>
+      <rect class="jar-rim" x="142.4" y="139" width="15.2" height="1.4" rx="0.7"></rect>
     </svg>
   </div>
 
@@ -262,7 +297,11 @@ import Worker from './Worker.astro';
 <style>
   .stage {
     --shade: #e7e4df; /* a shadow on the light wall */
-    --sh: clamp(160px, 28vh, 300px); /* scene height: fits the left margin on laptops */
+    --gap: max(8px, 1.5vw);
+    /* free space left of the 680px content column (plus its 24px padding) */
+    --margin: calc((100vw - 728px) / 2 + 24px - 2 * var(--gap));
+    --sw: clamp(230px, min(var(--margin), 44vh), 420px); /* scene width */
+    --sh: calc(var(--sw) * 220 / 300); /* scene height */
     position: fixed;
     inset: 0;
     z-index: 0;
@@ -282,9 +321,9 @@ import Worker from './Worker.astro';
   /* The scene's box: bottom-left corner, 300 × 220 units. */
   .box {
     position: absolute;
-    left: max(8px, 1.5vw);
+    left: var(--gap);
     bottom: 3vh;
-    width: calc(var(--sh) * 300 / 220);
+    width: var(--sw);
     height: var(--sh);
   }
 
@@ -323,13 +362,91 @@ import Worker from './Worker.astro';
     inset: 0;
   }
 
-  .scene {
-    filter: blur(1.5px);
+  /* Too narrow for the margin: the scene sits behind the text, so keep it faint. */
+  @media (max-width: 1225px) {
+    .scene,
+    .waiters {
+      opacity: 0.22;
+    }
+
+    .lights {
+      opacity: 0.6;
+    }
+  }
+
+  /* Dark mode: the same café at night; the candle and screens stay bright
+     because they live in the separate .lights layer. */
+  :global([data-theme='dark']) .scene,
+  :global([data-theme='dark']) .waiters {
+    filter: brightness(0.55) saturate(0.85);
+  }
+
+  /* ---- Colours: a muted, flat illustration palette ----------------------- */
+  .leaf {
+    fill: #4f7d4a;
+  }
+
+  .pot {
+    fill: #b8693f;
+  }
+
+  .tabletop {
+    fill: #8a5a3a; /* walnut */
+  }
+
+  .table-leg {
+    fill: #4a3427;
+  }
+
+  .alu {
+    fill: #b8bcc4;
+  }
+
+  .alu-dark {
+    fill: #8f959e;
+  }
+
+  .cup,
+  .china {
+    fill: #f4f1ea;
+  }
+
+  .jar {
+    fill: #eadcc2;
+  }
+
+  .jar-rim {
+    fill: #cdbb9b;
+  }
+
+  .w-shirt {
+    fill: #f1efea;
+  }
+
+  .w-shirt-shade {
+    fill: #dcd8cf;
+  }
+
+  .w-apron,
+  .w-trousers {
+    fill: #2b2724;
+  }
+
+  .w-shoe {
+    fill: #1c1a19;
+  }
+
+  .w-skin {
+    fill: #b9805a;
+  }
+
+  .w-hair {
+    fill: #241a14;
   }
 
   .stem {
     fill: none;
-    stroke: var(--shade);
+    stroke: #3f6a3a;
     stroke-width: 1.6;
     stroke-linecap: round;
   }
@@ -460,7 +577,6 @@ import Worker from './Worker.astro';
     width: 100%;
     height: 100%;
     overflow: visible;
-    filter: blur(1.5px);
   }
 
   /* Walk cycle: 1.2 s per two steps. */
