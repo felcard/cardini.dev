@@ -36,8 +36,8 @@
   --radius: 10px;
 }
 
-/* Theme: a tiny script in <head> sets data-theme on <html> before first paint,
-   from the visitor's saved choice or else their system setting. */
+/* Theme: <html> starts as data-theme="dark" for everyone; a tiny script in <head>
+   swaps in the visitor's saved choice from the toggle before first paint. */
 :root[data-theme='light'] {
   color-scheme: light;
 }
@@ -53,21 +53,6 @@
   --pink: #ff6fe0;
   --accent-ink: #0d1f15;
   --focus: #5cc48e;
-}
-
-/* No-JS fallback: follow the system setting (colours only). */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --bg: #141311;
-    --surface: #1c1b18;
-    --text: #ece8e1;
-    --muted: #aaa298;
-    --border: #34312c;
-    --accent: #5cc48e;
-    --pink: #ff6fe0;
-    --accent-ink: #0d1f15;
-    --focus: #5cc48e;
-  }
 }
 
 /* Neon name and role: Monoton by Vernon Adams (OFL-1.1), subset to just the

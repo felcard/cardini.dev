@@ -31,7 +31,7 @@ const navItems = [
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,8 +42,7 @@ const navItems = [
     <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {nav && <link rel="preload" href="/fonts/neon.woff2" as="font" type="font/woff2" crossorigin />}
-    <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#141311" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -56,25 +55,24 @@ const navItems = [
     <meta property="og:image:alt" content={`${site.name}, ${site.role}`} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    {/* Theme: runs before first paint so there's no flash of the wrong theme.
-        Saved choice wins; otherwise follow the system (and its changes). */}
+    {/* Theme: dark for everyone by default (set on <html> above, so it holds even
+        without JS). This runs before first paint and applies a saved choice from the
+        toggle, so there's no flash of the wrong theme. */}
     <script is:inline>
       (() => {
         const root = document.documentElement;
-        const mq = matchMedia('(prefers-color-scheme: dark)');
         let saved = null;
         try {
           saved = localStorage.getItem('theme');
         } catch {
-          /* storage blocked: fall back to the system setting */
+          /* storage blocked: stay on the default */
         }
         if (saved !== 'light' && saved !== 'dark') saved = null;
         const apply = (t) => {
           root.dataset.theme = t;
           document.getElementById('theme-toggle')?.setAttribute('aria-pressed', t === 'dark');
         };
-        apply(saved || (mq.matches ? 'dark' : 'light'));
-        mq.addEventListener('change', (e) => saved || apply(e.matches ? 'dark' : 'light'));
+        apply(saved || 'dark');
         addEventListener('DOMContentLoaded', () => {
           const b = document.getElementById('theme-toggle');
           if (!b) return;
